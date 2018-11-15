@@ -19,7 +19,7 @@ namespace netways_task.DAL
 
         public IEnumerable<UserProfile> GetUsersProfile()
         {
-            return context.UserProfile.ToList();
+            return context.UserProfile.Include(c => c.Country).ToList();
         }
 
         public UserProfile GetUserProfileByID(string userId)
