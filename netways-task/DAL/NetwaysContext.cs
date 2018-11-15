@@ -12,5 +12,6 @@ namespace netways_task.DAL
         public NetwaysContext() : base("NetwaysTaskDb") { }
         public DbSet<UserProfile> UserProfile {get; set;}
         public DbSet<Country> Countries {get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 }

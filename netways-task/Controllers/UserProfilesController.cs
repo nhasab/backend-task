@@ -10,9 +10,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using netways_task.DAL;
 using netways_task.Models;
+using netways_task.Security;
 
 namespace netways_task.Controllers
 {
+    [NetwaysAuth]
     public class UserProfilesController : ApiController
     {
         private IUserProfileRepository userRepository;

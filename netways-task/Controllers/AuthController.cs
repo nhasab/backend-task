@@ -1,20 +1,35 @@
-﻿using netways_task.Models;
+﻿using netways_task.DAL;
+using netways_task.Models;
+using netways_task.Security;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Mvc;
 
 namespace netways_task.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : ApiController
     {
-       
-        public bool login(string userName, string password)
+        [Route("api/login")]
+        [ResponseType(typeof(Account))]
+        public IHttpActionResult login(string loginName, string password)
         {
-            return false;
+            if (UserSecurity.login(loginName, password))
+            {
+                using (NetwaysContext db = new NetwaysContext())
+                {
+                    Account account = db.Accounts.Where(user => user.LoginName.Equals(loginName,
+                        StringComparison.OrdinalIgnoreCase) && user.Password == password).FirstOrDefault();
+
+                    return Ok(account);
+                }
+            }
+            else
+            {
+
+                return NotFound();
+
+            }
         }
     }
 

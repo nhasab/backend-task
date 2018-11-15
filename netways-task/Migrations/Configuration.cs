@@ -9,7 +9,7 @@ namespace netways_task.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(netways_task.DAL.NetwaysContext context)
